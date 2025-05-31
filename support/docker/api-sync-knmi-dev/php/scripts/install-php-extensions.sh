@@ -1,0 +1,35 @@
+#!/bin/sh
+install-php-extensions \
+    apcu \
+    bcmath \
+    bz2 \
+    calendar \
+    exif \
+    ffi \
+    gd \
+    gettext \
+    imap \
+    intl \
+    ldap \
+    mongodb \
+    mysqli \
+    odbc \
+    opcache \
+    pcntl \
+    pdo_mysql \
+    pdo_odbc \
+    pdo_pgsql \
+    pdo_sqlsrv \
+    pgsql \
+    pspell \
+    soap \
+    sockets \
+    sqlsrv \
+    ssh2 \
+    sysvmsg \
+    sysvsem \
+    sysvshm \
+    tidy \
+    xdebug${XDEBUG_VERSION:+"-$XDEBUG_VERSION"} \
+    xsl \
+    zip

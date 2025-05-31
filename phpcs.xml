@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ruleset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="vendor/squizlabs/php_codesniffer/phpcs.xsd">
+
+    <description>PSR12 with increased line-length limit.</description>
+
+    <arg name="basepath" value="."/>
+    <arg name="cache" value=".phpcs-cache"/>
+    <arg name="colors"/>
+    <arg name="extensions" value="php"/>
+
+    <!-- default psr-12 rule set-->
+    <rule ref="PSR12"/>
+
+    <rule ref="Generic.Files.LineLength">
+        <properties>
+            <property name="lineLimit" value="180"/>
+        </properties>
+    </rule>
+
+    <!-- add array syntax check -->
+    <rule ref="Generic.Arrays.DisallowLongArraySyntax.Found" />
+
+    <file>bin/</file>
+    <file>config/</file>
+    <file>src/</file>
+
+</ruleset>

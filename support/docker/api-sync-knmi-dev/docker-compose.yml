@@ -1,0 +1,38 @@
+services:
+  mssql:
+    build: mssql
+    container_name: api-sync-knmi-mssql
+    environment:
+      ACCEPT_EULA: 'Y'
+      SA_PASSWORD: $SA_PASSWORD
+    networks:
+      - api-sync-knmi-dev
+    ports:
+      - 1433:1433
+
+  mariadb:
+    image: "mariadb:${MARIADB_VERSION}"
+    user: 1000:100
+    container_name: api-sync-knmi-mariadb
+    restart: unless-stopped
+    networks:
+      - api-sync-knmi-dev
+    ports:
+      - "3300:3306"
+    volumes:
+      - ./mariadb/mysql/data:/var/lib/mysql
+      - ./mariadb/conf.d:/etc/mysql/conf.d
+      - /etc/passwd:/etc/passwd:ro
+    environment:
+      MYSQL_ROOT_PASSWORD: $MYSQL_ROOT_PASSWORD
+
+networks:
+  api-sync-knmi-dev:
+    name: api-sync-knmi-net
+    driver_opts:
+      com.docker.network.driver.mtu: 1400
+    external: true
+    #ipam:
+    #  driver: default
+    #  config:
+    #    - subnet: "172.20.100.0/24"
